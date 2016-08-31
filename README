@@ -1,0 +1,8 @@
+git2-module
+
+An attempt to implement git commands using libgit2.
+
+To run the tests:
+    
+    mkdir build && cd build && cmake .. && make
+    ./git_module_test
