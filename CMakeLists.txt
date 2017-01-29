@@ -4,7 +4,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 OPTION(BUILD_CLAR "Build Tests using the Clar suite" ON)
 
 FIND_PATH(LIBGIT2_INCLUDE_DIR NAMES git2.h)
-FIND_LIBRARY(LIBGIT2_LIBRARIES NAMES libgit2.so)
+FIND_LIBRARY(LIBGIT2_LIBRARIES NAMES libgit2.so, libgit2.dylib)
 
 SET(SRC_ALL common.c
             hash_object.c
@@ -23,6 +23,8 @@ ENDIF()
 IF(BUILD_CLAR)
     MESSAGE("BUILD_CLAR is ON")
     SET(TEST_DIR tests)
+    EXECUTE_PROCESS(COMMAND python2.7 ${PROJECT_SOURCE_DIR}/${TEST_DIR}/generate.py
+                    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/${TEST_DIR})
     SET(TEST_ALL ${TEST_DIR}/hash_object.c
                  ${TEST_DIR}/clar.c
                  ${TEST_DIR}/main.c)

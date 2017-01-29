@@ -14,8 +14,10 @@
 extern int global_test_counter;
 
 #include <git2.h>
+#include <sys/stat.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include "../builtin.h"
 
 #endif
